@@ -1,5 +1,12 @@
-$mainColor: rgb(69, 00, 69);
-$secondaryColor: rgb(96, 0, 96);
-$tertiaryColor: rgb(123, 0, 123);
+$mainColor: rgb(69, 0, 42);
+$mainColorHover: rgb(96, 0, 96);
+$mainColorActive: rgb(123, 0, 123);
+
+$secondaryColor: rgb(69, 42, 0);
+$secondaryColorHover: rgb(96, 69, 0);
+$secondaryColorActive: rgb(123, 96, 0);
 
 $defaultInlinePadding: 69px;
+
+$defaultShadow: 0 0 10px rgba(0, 0, 0, 0.5);
+$defaultTransition: all 200ms;

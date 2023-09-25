@@ -21,11 +21,11 @@
 
 
         &:hover {
-            background-color: $secondaryColor;
+            background-color: $mainColorHover;
         }
 
         &:active, &.active {
-            background-color: $tertiaryColor;
+            background-color: $mainColorActive;
         }
     }
 

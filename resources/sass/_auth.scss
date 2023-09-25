@@ -1,0 +1,34 @@
+.auth {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+
+    height: 100%;
+
+    padding-inline: $defaultInlinePadding;
+}
+
+.form-box {
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    color: white;
+
+    h1 {
+        margin: 0;
+    }
+
+    form {
+
+    }
+
+    &.login-form,
+    &.register-form {
+        width: 360px;
+        gap: 20px;
+    }
+}
