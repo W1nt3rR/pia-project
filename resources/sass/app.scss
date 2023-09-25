@@ -1,0 +1,23 @@
+@import "variables.scss";
+@import "navigation.scss";
+@import "elements.scss";
+@import "auth.scss";
+@import "footer.scss";
+
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+#app {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
+    #router-view {
+        flex-grow: 1;
+        padding-inline: $defaultInlinePadding;
+    }
+}

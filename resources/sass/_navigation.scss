@@ -1,0 +1,32 @@
+#navigation {
+    height: 69px;
+    background-color: $mainColor;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+
+    padding-inline: $defaultInlinePadding;
+
+    a {
+        color: white;
+        text-decoration: none;
+        font-size: 20px;
+        font-weight: bold;
+        padding: 10px;
+        border-radius: 5px;
+        transition: all 0.3s;
+        text-decoration: none;
+
+
+        &:hover {
+            background-color: $secondaryColor;
+        }
+
+        &:active, &.active {
+            background-color: $tertiaryColor;
+        }
+    }
+
+}
