@@ -13,6 +13,28 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Public routes
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::get('/login', function () {
+    return view('login');
+})->name('login');
+
+
+// Authenticated routes
+Route::middleware(['auth:sanctum'])->group(function () {
+
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+
+});
+
+// Admin only routes
+Route::middleware(['auth:sanctum', 'auth.admin'])->group(function () {
+
+
+
 });
