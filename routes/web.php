@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,6 +26,10 @@ Route::get('/login', function () {
 Route::get('/register', function () {
     return view('register');
 })->name('register');
+
+// User routes
+Route::post("/user/register", [UserController::class, "register"]);
+Route::post("/user/login", [UserController::class, "login"]);
 
 
 // Authenticated routes

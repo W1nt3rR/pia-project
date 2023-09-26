@@ -18,8 +18,12 @@
 
     color: white;
 
-    h1 {
+    h1, p {
         margin: 0;
+    }
+
+    p {
+        font-size: 0.75rem;
     }
 
     form {

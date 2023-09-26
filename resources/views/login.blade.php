@@ -2,15 +2,22 @@
     <x-auth-page>
         <x-form-box class="login-form">
             <h1>Login</h1>
-            <form method="POST" action="{{ route('login') }}">
+            <form method="POST" action="/user/login" novalidate>
+                @csrf
                 <div class="form-group">
-                    <label>Email</label>
-                    <input type="email" name="email" label="Email" required autofocus />
+                    <label for="email">Email</label>
+                    <input type="email" name="email" label="Email" autofocus />
+                    @error('email')
+                    <p style="color: red">{{$message}}</p>
+                    @enderror
                 </div>
 
                 <div class="form-group">
-                    <label>Password</label>
-                    <input type="password" name="password" label="Password" required autocomplete="current-password" />
+                    <label for="password">Password</label>
+                    <input type="password" name="password" label="Password"/>
+                    @error('password')
+                    <p style="color: red">{{$message}}</p>
+                    @enderror
                 </div>
 
                 <div class="button-container">
