@@ -115,5 +115,7 @@
                 </div>
             </form>
         </x-form-box>
+
+        <a class="switch-login-register" href="/login">Go to Login</a>
     </x-auth-page>
 </x-layout>

@@ -25,5 +25,7 @@
                 </div>
             </form>
         </x-form-box>
+
+        <a class="switch-login-register" href="/register">Go to Register</a>
     </x-auth-page>
 </x-layout>

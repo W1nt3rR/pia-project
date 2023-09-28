@@ -8,6 +8,12 @@
     height: 100%;
 
     padding-inline: $defaultInlinePadding;
+
+    .switch-login-register {
+        text-decoration: none;
+        color: white;
+        font-size: 0.875rem;
+    }
 }
 
 .form-box {
