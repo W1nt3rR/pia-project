@@ -20,6 +20,8 @@
                     @enderror
                 </div>
 
+                <a class="switch-login-register" href="/password">Reset password</a>
+
                 <div class="button-container">
                     <button class="button" type="submit">Login</button>
                 </div>

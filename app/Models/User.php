@@ -53,4 +53,24 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    /**
+     * Undocumented function
+     *
+     * @return void
+     */
+    public function courses()
+    {
+        return $this->hasMany(Course::class, 'user_id')->withTrashed();
+    }
+
+    /**
+     * Undocumented function
+     *
+     * @return void
+     */
+    public function enrolledCourses()
+    {
+        return $this->belongsToMany(Course::class, 'course_user', 'user_id', 'course_id')->withTrashed();
+    }
 }

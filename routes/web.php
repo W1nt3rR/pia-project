@@ -27,9 +27,14 @@ Route::get('/register', function () {
     return view('register');
 })->name('register');
 
+Route::get('/password', function () {
+    return view('password-reset');
+})->name('password-reset');
+
 // User routes
 Route::post("/user/register", [UserController::class, "register"]);
 Route::post("/user/login", [UserController::class, "login"]);
+Route::post("/user/passwordreset", [UserController::class, "passwordreset"]);
 
 
 // Authenticated routes

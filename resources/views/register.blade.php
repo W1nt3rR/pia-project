@@ -104,8 +104,8 @@
 
                 <div class="form-group">
                     <label>Confirm Password</label>
-                    <input type="password" name="confirm-password" label="Confirm Password" />
-                    @error('confirm-password')
+                    <input type="password" name="password-confirmation" label="Confirm Password" />
+                    @error('password-confirmation')
                     <p style="color: red">{{$message}}</p>
                     @enderror
                 </div>

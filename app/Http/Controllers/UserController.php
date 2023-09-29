@@ -37,14 +37,13 @@ class UserController extends Controller
 
         $formData['password'] = bcrypt($formData['password']);
 
-        $formData['role'] = 'user';
         $formData['picture'] = $formData['picture']->store('public/profile-pictures');
 
         $user = User::create($formData);
 
         auth()->login($user);
 
-        redirect('/dashboard');
+        return redirect('/dashboard');
         
     }
 
@@ -63,6 +62,38 @@ class UserController extends Controller
                 'message' => 'Invalid credentials.',
             ]);
         }
+
+        return redirect('/');
+    }
+
+    /**
+     * Reset users password
+     */
+    public function passwordreset(Request $request)
+    {
+        $formData = $request->validate([
+            'email' => ['required', 'string', 'email', 'max:255'],
+            'current-password' => ['required', 'string'],
+            'new-password' => ['required', 'string', 'min:8'],
+            'confirm-password' => ['required', 'string', 'min:8'],
+        ]);
+
+        $user = User::where('email', $formData['email'])->first();
+
+        if (!$user) {
+            return redirect()->back()->withErrors([
+                'message' => 'Invalid credentials.',
+            ]);
+        }
+
+        if (!auth()->attempt(['email' => $formData['email'], 'password' => $formData['current-password']])) {
+            return redirect()->back()->withErrors([
+                'message' => 'Invalid credentials.',
+            ]);
+        }
+
+        $user->password = bcrypt($formData['new-password']);
+        $user->save();
 
         return redirect('/');
     }
