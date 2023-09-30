@@ -1,4 +1,5 @@
 {
+    "name": "winter-pia",
     "private": true,
     "type": "module",
     "scripts": {
