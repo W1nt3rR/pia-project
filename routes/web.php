@@ -31,6 +31,10 @@ Route::get('/password', function () {
     return view('password-reset');
 })->name('password-reset');
 
+Route::get('/courses', function () {
+    return view('courses');
+})->name('courses');
+
 // User routes
 Route::post("/user/register", [UserController::class, "register"]);
 Route::post("/user/login", [UserController::class, "login"]);
