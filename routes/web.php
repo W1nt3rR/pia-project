@@ -1,7 +1,9 @@
 <?php
 
-use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\NewsController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\CourseController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,9 +33,16 @@ Route::get('/password', function () {
     return view('password-reset');
 })->name('password-reset');
 
-Route::get('/courses', function () {
-    return view('courses');
-})->name('courses');
+// News routes
+Route::get('/news', [NewsController::class, 'index']);
+Route::get('/news/{news}', [NewsController::class, 'show']);
+Route::post('/news', [NewsController::class, 'create']);
+
+// Course routes
+Route::get('/courses', [CourseController::class, 'index']);
+Route::get('/courses/{course}', [CourseController::class, 'show']);
+Route::post('/courses', [CourseController::class, 'create']);
+
 
 // User routes
 Route::post("/user/register", [UserController::class, "register"]);

@@ -1,3 +1,3 @@
 <x-layout>
-    Courses
+    Index courses
 </x-layout>
