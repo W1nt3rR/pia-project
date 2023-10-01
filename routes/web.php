@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\QuizController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,12 +37,10 @@ Route::get('/password', function () {
 // News routes
 Route::get('/news', [NewsController::class, 'index']);
 Route::get('/news/{news}', [NewsController::class, 'show']);
-Route::post('/news', [NewsController::class, 'create']);
 
 // Course routes
 Route::get('/courses', [CourseController::class, 'index']);
 Route::get('/courses/{course}', [CourseController::class, 'show']);
-Route::post('/courses', [CourseController::class, 'create']);
 
 
 // User routes
@@ -57,11 +56,20 @@ Route::middleware(['auth:sanctum'])->group(function () {
         return view('dashboard');
     })->name('dashboard');
 
+    // Course routes
+    Route::get('/course/create', [CourseController::class, 'create']);
+    Route::post('/courses', [CourseController::class, 'store']);
+
+    Route::get('/quiz/{quiz}', [QuizController::class, 'show']);
+    Route::get('/quiz/create/{course}', [QuizController::class, 'create']);
+    Route::get('/quiz/start/{quiz}', [QuizController::class, 'start']);
+
+    Route::post('/questions/create/{quiz}', [QuizController::class, 'addQuestion']);
+
+    // News routes
+    Route::post('/news', [NewsController::class, 'create']);
 });
 
 // Admin only routes
 Route::middleware(['auth:sanctum', 'auth.admin'])->group(function () {
-
-
-
 });

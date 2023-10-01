@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class AdminOnly
+class TeacherOnly
 {
     /**
      * Handle an incoming request.
@@ -15,7 +15,7 @@ class AdminOnly
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(auth()->user()->role === 'admin' || auth()->user()->role === 'teacher'){
+        if(auth()->user()->role === 'teacher'){
             return $next($request);
         }
 

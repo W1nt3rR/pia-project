@@ -8,6 +8,8 @@
     border: none;
     outline: none;
 
+    flex-shrink: 0;
+
     transition: $defaultTransition;
 
     cursor: pointer;
@@ -53,39 +55,55 @@ form {
         gap: 2px;
 
         width: 100%;
+    }
+}
 
-        label {
-            opacity: 0.75;
-            font-size: 0.875rem;
-        }
+.button-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-        input, select {
-            height: 32px;
-            border-radius: 8px;
-            outline: none;
-            border: none;
+    gap: 10px;
 
-            width: 100%;
-        
-            padding-inline: 10px;
+    flex-wrap: nowrap;
+}
 
-            background-color: $secondaryColor;
-            color: white;
+label {
+    opacity: 0.75;
+    font-size: 0.875rem;
+}
 
-            transition: $defaultTransition;
+input,
+select,
+textarea {
+    height: 32px;
+    border-radius: 8px;
+    outline: none;
+    border: none;
 
-            &:hover {
-                background-color: $secondaryColorHover;
-            }
+    width: 100%;
 
-            &:focus {
-                background-color: $secondaryColorActive;
-            }
-        }
+    padding-inline: 10px;
+
+    background-color: $secondaryColor;
+    color: white;
+
+    transition: $defaultTransition;
+
+    &:hover {
+        background-color: $secondaryColorHover;
     }
 
-    .button-container {
-        display: flex;
-        justify-content: center;
+    &:focus {
+        background-color: $secondaryColorActive;
     }
+}
+
+textarea {
+    height: 64px;
+    padding: 10px;
+    resize: vertical;
+
+    max-height: 128px;
 }

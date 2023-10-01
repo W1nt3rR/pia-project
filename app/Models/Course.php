@@ -52,4 +52,14 @@ class Course extends Model
                 ->orWhere('tags', 'like', '%' . request('search') . '%');
         }
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function quizzes()
+    {
+        return $this->hasMany(Quiz::class);
+    }
 }
