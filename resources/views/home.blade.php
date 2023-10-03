@@ -1,5 +1,5 @@
 <x-layout>
 
-    Home
+    Home test
 
 </x-layout>
