@@ -26,6 +26,4 @@
             </div>
         </x-form-box>
     </div>
-
-
 </x-layout>

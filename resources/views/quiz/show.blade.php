@@ -136,6 +136,6 @@
     }
 
     function startQuiz() {
-        window.location.href = "/quiz/start{{ $quiz->id }}";
+        window.location.href = "/quiz/start/{{ $quiz->id }}";
     }
 </script>
