@@ -5,7 +5,7 @@
 <div class="filler"></div>
 
 <a href="/">Home</a>
-<a href="/dashboard">Dashboard</a>
+<!-- <a href="/dashboard">Dashboard</a> -->
 <a href="/news">News</a>
 <a href="/courses">Courses</a>
 <a href="/login">Login</a>
