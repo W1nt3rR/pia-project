@@ -1,4 +1,4 @@
-<div>
+<div class="news">
     <h2>News Feed</h2>
 
     @auth

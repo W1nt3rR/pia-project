@@ -1,5 +1,5 @@
-<div>
-    logo
+<div class="logo">
+    C&S
 </div>
 
 <div class="filler"></div>
@@ -11,6 +11,6 @@
 <a href="/login">Login</a>
 
 
-<div class="user-avatar">
+<!-- <div class="user-avatar">
     avatar
-</div>
+</div> -->
