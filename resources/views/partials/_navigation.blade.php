@@ -12,6 +12,6 @@
 
 @auth
 <div class="user-avatar">
-    {{ auth()->user()->first_name }} {{ auth()->user()->last_name }}
+    {{ auth()->user()['first-name'] }} {{ auth()->user()['last-name'] }}
 </div>
 @endauth
