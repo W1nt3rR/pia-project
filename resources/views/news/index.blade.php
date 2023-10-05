@@ -1,7 +1,7 @@
 <x-layout>
 
     <div class="news">
-        <h2>News Feed</h2>
+        <h1>News Feed</h1>
 
         @auth
         @if (auth()->user()->role === 'admin')
@@ -26,16 +26,15 @@
         @endif
         @endauth
 
-        @foreach ($news as $newsItem)
-        <div>
-            <h1>
-                {{ $newsItem->title }}
-            </h1>
-            <div>
-                {{ $newsItem->content }}
+        <div class="news-list">
+            @foreach ($news as $newsItem)
+            <div class="news-item">
+                <p>{{ $newsItem->created_at->diffForHumans() }}</p>
+                <h1>{{ $newsItem->title }}</h1>
+                <p>{{ $newsItem->content }}</p>
             </div>
+            @endforeach
         </div>
-        @endforeach
     </div>
 
 </x-layout>

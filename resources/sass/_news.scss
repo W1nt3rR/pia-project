@@ -8,4 +8,26 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
+    .news-list {
+        width: 75%;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+
+        gap: 20px;
+
+        .news-item {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+
+            background-color: $secondaryColor;
+            padding: 30px 40px;
+            border-radius: 10px;
+
+            h1, p {
+                margin: 0;
+            }
+        }
+    }
 }

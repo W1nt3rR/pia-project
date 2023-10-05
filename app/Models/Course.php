@@ -36,7 +36,7 @@ class Course extends Model
      * @var array<string, string>
      */
     protected $casts = [
-        'duration' => 'decimal:2',
+        'duration' => 'decimal:0',
         'price' => 'float:2',
     ];
 

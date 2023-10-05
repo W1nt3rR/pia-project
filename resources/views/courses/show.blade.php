@@ -3,18 +3,35 @@
         <x-form-box class="courses-form-box">
             <h1>Course: {{ $course->title }}</h1>
 
-            <div>
-                <div>
-                    {{ $course->tags }}
+            <div class="course-info">
+                <div class="tags">
+                    @foreach (explode(", ", $course->tags) as $tag)
+                    <div class="tag">
+                        {{ $tag }}
+                    </div>
+                    @endforeach
                 </div>
-                <div>
-                    {{ $course->description }}
+                <div class="course-info-group">
+                    <div>
+                        <p>Description:</p>
+                        <div>
+                            {{ $course->description }}
+                        </div>
+                    </div>
                 </div>
-                <div>
-                    {{ $course->duration }}
-                </div>
-                <div>
-                    {{ $course->price }}
+                <div class="course-info-group">
+                    <div>
+                        <p>Duration</p>
+                        <div>
+                            {{ $course->duration }} hours
+                        </div>
+                    </div>
+                    <div>
+                        <p>Price</p>
+                        <div>
+                            {{ $course->price }} dollars
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -26,11 +43,13 @@
                 @endforeach
             </div>
 
-            <form method="GET" action="/quiz/create/{{ $course->id }}">
-                <div class="button-container">
-                    <button class="button" type="submit">Add quiz</button>
-                </div>
-            </form>
+            @auth
+            @if (auth()->user()->role == 'teacher' || auth()->user()->role == 'admin')
+            <a href="/quiz/create/{{ $course->id }}">
+                <button class="button" type="submit">Add quiz</button>
+            </a>
+            @endif
+            @endauth
 
         </x-form-box>
     </div>
