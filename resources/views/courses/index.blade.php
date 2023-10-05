@@ -7,10 +7,16 @@
                 @foreach ($courses as $course)
                 <a href="courses/{{$course['id']}}" class="item">
                     <div>{{ $course->title }}</div>
+                    <div class="tags">
+                        @foreach (explode(", ", $course->tags) as $tag)
+                        <div class="tag">
+                            {{ $tag }}
+                        </div>
+                        @endforeach
+                    </div>
                     <div class="filler"></div>
-                    <div>{{ $course->tags }}</div>
-                    <div>{{ $course->duration }}</div>
-                    <div>{{ $course->price }}</div>
+                    <div>{{ $course->duration }}h</div>
+                    <div>{{ $course->price }}$</div>
                 </a>
                 @endforeach
             </div>
