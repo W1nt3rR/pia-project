@@ -10,7 +10,8 @@
 <a href="/courses">Courses</a>
 <a href="/login">Login</a>
 
-
-<!-- <div class="user-avatar">
-    avatar
-</div> -->
+@auth
+<div class="user-avatar">
+    {{ auth()->user()->first_name }} {{ auth()->user()->last_name }}
+</div>
+@endauth
