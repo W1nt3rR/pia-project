@@ -8,6 +8,7 @@
 <!-- <a href="/dashboard">Dashboard</a> -->
 <a href="/news">News</a>
 <a href="/courses">Courses</a>
+<a href="/enrolled">Enrolled</a>
 
 @if(auth()->user())
 <a href="/logout">Logout</a>

@@ -99,7 +99,7 @@ $enrolled = $course->enrolledUsers->contains(auth()->user());
                     </div>
                     <button class="button" type="submit">Upload</button>
                     <a class="abutton" href="/quiz/create/{{ $course->id }}">
-                        <button class="button" type="submit">Add quiz</button>
+                        <div class="button">Add quiz</div>
                     </a>
                 </div>
             </form>

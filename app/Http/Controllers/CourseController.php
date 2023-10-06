@@ -17,6 +17,13 @@ class CourseController extends Controller
         ]);
     }
 
+    public function enrolled()
+    {
+        return view('courses.index', [
+            'courses' => auth()->user()->enrolledCourses()->paginate(10)
+        ]);
+    }
+
     public function show(Course $course)
     {
         return view('courses.show', [

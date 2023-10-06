@@ -1,6 +1,11 @@
 <x-layout>
     <div class="courses">
         <x-form-box class="courses-form-box">
+
+            @if ($courses->count() == 0)
+            <h1>No courses found</h1>
+            @else
+
             <h1>Courses</h1>
 
             <div class="items">
@@ -30,6 +35,8 @@
                 @endif
                 @endauth
             </div>
+
+            @endif
         </x-form-box>
     </div>
 </x-layout>

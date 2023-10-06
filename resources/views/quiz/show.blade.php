@@ -124,6 +124,7 @@ $enrolled = $quiz->course->enrolledUsers->contains(auth()->user());
                 @auth
                 @if (auth()->user()->role == 'teacher' || auth()->user()->role == 'admin')
                 <button onclick="toggleQuestionForm()" class="button">New question</button>
+                <button onclick="removeQuiz()" class="button">Remove</button>
                 @endif
                 @endauth
             </div>
@@ -148,5 +149,11 @@ $enrolled = $quiz->course->enrolledUsers->contains(auth()->user());
 
     function startQuiz() {
         window.location.href = "/quiz/start/{{ $quiz->id }}";
+    }
+
+    function removeQuiz() {
+        if (confirm("Are you sure you want to remove this quiz?")) {
+            window.location.href = "/quiz/remove/{{ $quiz->id }}";
+        }
     }
 </script>

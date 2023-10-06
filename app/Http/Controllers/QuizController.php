@@ -31,6 +31,15 @@ class QuizController extends Controller
         return redirect('/quiz/' . $quiz->id);
     }
 
+    public function remove($quiz)
+    {
+        $quizObject = Quiz::find($quiz);
+        $course = $quizObject->course;
+        $quizObject->delete();
+
+        return redirect('/courses/' . $course->id);
+    }
+
     public function addQuestion(Request $request, Quiz $quiz)
     {
         $request->validate([
