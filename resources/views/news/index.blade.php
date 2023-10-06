@@ -1,5 +1,5 @@
 <?php
-$isAdmin = auth()->user()->role == 'admin';
+$isAdmin = auth()->user()?->role == 'admin';
 ?>
 
 <x-layout>

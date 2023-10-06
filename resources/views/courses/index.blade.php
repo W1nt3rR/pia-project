@@ -1,6 +1,6 @@
 <?php
-$isAdmin = auth()->user()->role == 'admin';
-$isTeacher = auth()->user()->role == 'teacher';
+$isAdmin = auth()->user()?->role == 'admin';
+$isTeacher = auth()->user()?->role == 'teacher';
 ?>
 
 <x-layout>

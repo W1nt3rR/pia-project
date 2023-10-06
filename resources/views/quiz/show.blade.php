@@ -1,7 +1,7 @@
 <?php
 $enrolled = $quiz->course->enrolledUsers->contains(auth()->user());
 $isCourseOwner = $quiz->course->user == auth()->user();
-$isAdmin = auth()->user()->role == 'admin';
+$isAdmin = auth()->user()?->role == 'admin';
 ?>
 
 <x-layout>

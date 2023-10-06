@@ -7,7 +7,7 @@ $filenames = array_map('basename', $files);
 
 $enrolled = $course->enrolledUsers->contains(auth()->user());
 $isCourseOwner = $course->user == auth()->user();
-$isAdmin = auth()->user()->role == 'admin';
+$isAdmin = auth()->user()?->role == 'admin';
 ?>
 
 <x-layout>
