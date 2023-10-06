@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Course;
+use App\Models\News;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -54,6 +55,11 @@ class CourseController extends Controller
         $course->price = $request->price;
         $course->user_id = auth()->user()->id;
         $course->save();
+
+        $news = new News();
+        $news->title = "New course just dropped";
+        $news->content = auth()->user()['first-name'] . ' just created a new course: ' . $course->title;
+        $news->save();
 
         return CourseController::show($course);
     }
