@@ -58,8 +58,20 @@ class Course extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function enrolledUsers()
+    {
+        return $this->belongsToMany(User::class, 'course_user', 'course_id', 'user_id');
+    }
+
     public function quizzes()
     {
         return $this->hasMany(Quiz::class);
+    }
+
+    public function uploadFile($file)
+    {
+        $fileName = $file->getClientOriginalName();
+        $file->storeAs('documents/' . $this->id, $fileName, 'public');
+        $this->save();
     }
 }

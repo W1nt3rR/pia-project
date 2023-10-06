@@ -60,6 +60,9 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/course/create', [CourseController::class, 'create']);
     Route::post('/courses', [CourseController::class, 'store']);
 
+    Route::get('/course/enroll/{course}', [CourseController::class, 'enroll']);
+    Route::get('/course/leave/{course}', [CourseController::class, 'leave']);
+
     Route::get('/quiz/{quiz}', [QuizController::class, 'show']);
     Route::get('/quiz/create/{course}', [QuizController::class, 'create']);
     Route::get('/quiz/start/{quiz}', [QuizController::class, 'start']);
@@ -68,6 +71,11 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
     // News routes
     Route::post('/news', [NewsController::class, 'create']);
+
+    Route::post('/course/pdf', [CourseController::class, 'uploadPDF']);
+    Route::get('/documents/{course}/{filename}', [CourseController::class, 'showFile']);
+
+    Route::get('/logout', [UserController::class, 'logout']);
 });
 
 // Admin only routes

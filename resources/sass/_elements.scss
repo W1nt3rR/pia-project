@@ -23,6 +23,10 @@
     }
 }
 
+.abutton {
+    flex-shrink: 0;
+}
+
 .filler {
     flex-grow: 1;
 }

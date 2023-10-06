@@ -1,6 +1,13 @@
+<?php
+$enrolled = $quiz->course->enrolledUsers->contains(auth()->user());
+?>
+
 <x-layout>
     <div class="courses">
         <x-form-box class="courses-form-box">
+
+            @if($enrolled)
+
             <h1>Course: {{ $quiz->course->title }}: Quiz {{ $quiz->id }}</h1>
 
             @auth
@@ -120,6 +127,10 @@
                 @endif
                 @endauth
             </div>
+
+            @else
+                <h1>Please enroll to the course to get access to quizzes</h1>
+            @endif
 
         </x-form-box>
     </div>

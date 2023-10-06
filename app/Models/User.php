@@ -72,6 +72,6 @@ class User extends Authenticatable
      */
     public function enrolledCourses()
     {
-        return $this->belongsToMany(Course::class, 'course_user', 'user_id', 'course_id')->withTrashed();
+        return $this->belongsToMany(Course::class, 'course_user', 'user_id', 'course_id');
     }
 }

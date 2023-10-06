@@ -1,9 +1,30 @@
+<?php
+
+use Illuminate\Support\Facades\Storage;
+
+$files = Storage::files('public/documents/' . $course->id);
+$filenames = array_map('basename', $files);
+
+$enrolled = $course->enrolledUsers->contains(auth()->user());
+?>
+
 <x-layout>
     <div class="courses">
         <x-form-box class="courses-form-box">
             <h1>Course: {{ $course->title }}</h1>
 
             <div class="course-info">
+                <div>
+                    @if ($enrolled)
+                    <a href="/course/leave/{{ $course->id }}">
+                        <button class="button" type="submit">Leave</button>
+                    </a>
+                    @else
+                    <a href="/course/enroll/{{ $course->id }}">
+                        <button class="button" type="submit">Enroll</button>
+                    </a>
+                    @endif
+                </div>
                 <div class="tags">
                     @foreach (explode(", ", $course->tags) as $tag)
                     <div class="tag">
@@ -33,8 +54,26 @@
                         </div>
                     </div>
                 </div>
+                @if ($enrolled)
+                @auth
+                <div class="course-info-group">
+                    <div>
+                        <p>Course Materials</p>
+                        <div>
+                            @foreach ($filenames as $filename)
+                            <div>
+                                <a href="{{ url('/documents/' . $course->id . '/' . $filename) }}" target="_blank">{{ $filename }}</a>
+                            </div>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+                @endauth
+                @endif
             </div>
 
+            @if ($enrolled)
+            @auth
             <div class="items">
                 @foreach ($course->quizzes as $quiz)
                 <a href="/quiz/{{ $quiz->id }}" class="item">
@@ -42,12 +81,28 @@
                 </a>
                 @endforeach
             </div>
+            @endauth
+            @endif
 
             @auth
             @if (auth()->user()->role == 'teacher' || auth()->user()->role == 'admin')
-            <a href="/quiz/create/{{ $course->id }}">
-                <button class="button" type="submit">Add quiz</button>
-            </a>
+            <form method="POST" action="/course/pdf" enctype="multipart/form-data">
+                <input type="hidden" name="course_id" value="{{ $course->id }}">
+                @csrf
+                <div class="group-group">
+                    <label>Add PDF:</label>
+                    <div class="form-group">
+                        <input type="file" name="file">
+                        @error('pdf')
+                        <p class="error">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <button class="button" type="submit">Upload</button>
+                    <a class="abutton" href="/quiz/create/{{ $course->id }}">
+                        <button class="button" type="submit">Add quiz</button>
+                    </a>
+                </div>
+            </form>
             @endif
             @endauth
 
