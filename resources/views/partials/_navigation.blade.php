@@ -18,7 +18,9 @@
 
 @auth
 <div class="user-avatar">
-    {{ auth()->user()['first-name'] }} {{ auth()->user()['last-name'] }}
+    <div>{{ auth()->user()['first-name'] }} {{ auth()->user()['last-name'] }}</div>
+    <div>{{ auth()->user()['username'] }}</div>
+    
 </div>
 @if (auth()->user()?->attempts > 0)
 <div>

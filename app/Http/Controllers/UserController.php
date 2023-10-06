@@ -24,7 +24,7 @@ class UserController extends Controller
             'first-name' => ['required', 'string', 'min:2', 'max:255'],
             'last-name' => ['required', 'string', 'min:2', 'max:255'],
             'username' => ['required', 'string', 'max:255'],
-            'picture' => ['required', 'image', 'mimes:jpeg,png,jpg', 'max:16384'],
+            'picture' => ['image', 'mimes:jpeg,png,jpg', 'max:16384'],
             'country' => ['required', 'string', 'max:255'],
             'city' => ['required', 'string', 'max:255'],
             'gender' => ['required', 'string', 'max:255'],
@@ -35,9 +35,23 @@ class UserController extends Controller
             'password-confirmation' => ['required', 'string', 'min:8'],
         ]);
 
+        if (strtotime($formData['birth-date']) > strtotime('-7 years')) {
+            return redirect()->back()->withErrors([
+                'message' => 'You must be at least 7 years old to register.',
+            ]);
+        }
+
+        if ($formData['password'] !== $formData['password-confirmation']) {
+            return redirect()->back()->withErrors([
+                'message' => 'Passwords do not match.',
+            ]);
+        }
+
         $formData['password'] = bcrypt($formData['password']);
 
-        $formData['picture'] = $formData['picture']->store('public/profile-pictures');
+        if ($request->hasFile('picture')) {
+            $formData['picture'] = $formData['picture']->store('public/profile-pictures');
+        }
 
         $user = User::create($formData);
 
