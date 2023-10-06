@@ -1,5 +1,7 @@
 <?php
 $enrolled = $quiz->course->enrolledUsers->contains(auth()->user());
+$isCourseOwner = $quiz->course->user == auth()->user();
+$isAdmin = auth()->user()->role == 'admin';
 ?>
 
 <x-layout>
@@ -11,7 +13,7 @@ $enrolled = $quiz->course->enrolledUsers->contains(auth()->user());
             <h1>Course: {{ $quiz->course->title }}: Quiz {{ $quiz->id }}</h1>
 
             @auth
-            @if (auth()->user()->role == 'teacher' || auth()->user()->role == 'admin')
+            @if ($isCourseOwner || $isAdmin)
             <div id="question-form" style="display: none;">
                 <form method="POST" action="/questions/create/{{ $quiz->id }}">
                     @csrf
@@ -77,13 +79,21 @@ $enrolled = $quiz->course->enrolledUsers->contains(auth()->user());
             @endauth
 
             @auth
-            @if (auth()->user()->role == 'teacher' || auth()->user()->role == 'admin')
+            @if ($isCourseOwner || $isAdmin)
             <div class="items">
                 <label>Easy:</label>
                 @foreach ($quiz->questions as $question)
                 @if ($question->difficulty == 'easy')
                 <div class="item">
-                    {{ $question->question }}
+                    <div>
+                        {{ $question->question }}
+                    </div>
+                    <div class="filler"></div>
+                    <div>
+                        <a class="abutton" href="/questions/delete/{{ $quiz->id }}/{{ $question->id }}">
+                            <div class="button">Remove</div>
+                        </a>
+                    </div>
                 </div>
                 @endif
                 @endforeach
@@ -93,7 +103,15 @@ $enrolled = $quiz->course->enrolledUsers->contains(auth()->user());
                 @foreach ($quiz->questions as $question)
                 @if ($question->difficulty == 'medium')
                 <div class="item">
-                    {{ $question->question }}
+                    <div>
+                        {{ $question->question }}
+                    </div>
+                    <div class="filler"></div>
+                    <div>
+                        <a class="abutton" href="/questions/delete/{{ $quiz->id }}/{{ $question->id }}">
+                            <div class="button">Remove</div>
+                        </a>
+                    </div>
                 </div>
                 @endif
                 @endforeach
@@ -103,7 +121,15 @@ $enrolled = $quiz->course->enrolledUsers->contains(auth()->user());
                 @foreach ($quiz->questions as $question)
                 @if ($question->difficulty == 'hard')
                 <div class="item">
-                    {{ $question->question }}
+                    <div>
+                        {{ $question->question }}
+                    </div>
+                    <div class="filler"></div>
+                    <div>
+                        <a class="abutton" href="/questions/delete/{{ $quiz->id }}/{{ $question->id }}">
+                            <div class="button">Remove</div>
+                        </a>
+                    </div>
                 </div>
                 @endif
                 @endforeach
@@ -122,7 +148,7 @@ $enrolled = $quiz->course->enrolledUsers->contains(auth()->user());
                 <button onclick="startQuiz()" class="button" type="submit">Start Quiz</button>
 
                 @auth
-                @if (auth()->user()->role == 'teacher' || auth()->user()->role == 'admin')
+                @if ($isCourseOwner || $isAdmin)
                 <button onclick="toggleQuestionForm()" class="button">New question</button>
                 <button onclick="removeQuiz()" class="button">Remove</button>
                 @endif
@@ -130,7 +156,7 @@ $enrolled = $quiz->course->enrolledUsers->contains(auth()->user());
             </div>
 
             @else
-                <h1>Please enroll to the course to get access to quizzes</h1>
+            <h1>Please enroll to the course to get access to quizzes</h1>
             @endif
 
         </x-form-box>

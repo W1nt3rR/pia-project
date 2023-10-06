@@ -71,6 +71,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/quiz/start/{quiz}', [QuizController::class, 'start']);
 
     Route::post('/questions/create/{quiz}', [QuizController::class, 'addQuestion']);
+    Route::get('/questions/delete/{quiz}/{questionID}', [QuizController::class, 'removeQuestion']);
 
     // News routes
     Route::post('/news', [NewsController::class, 'create']);

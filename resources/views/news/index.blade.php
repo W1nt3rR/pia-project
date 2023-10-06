@@ -1,10 +1,14 @@
+<?php
+$isAdmin = auth()->user()->role == 'admin';
+?>
+
 <x-layout>
 
     <div class="news">
         <h1>News Feed</h1>
 
         @auth
-        @if (auth()->user()->role === 'admin')
+        @if ($isAdmin)
         <div class="add-news-feed-form">
             <form method="POST" action="/news">
                 @csrf
@@ -20,8 +24,6 @@
                 @enderror
                 <button type="submit"><i class="fa-solid fa-circle-plus"></i> Add News</button>
             </form>
-
-
         </div>
         @endif
         @endauth

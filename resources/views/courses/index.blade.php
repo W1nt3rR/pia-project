@@ -1,3 +1,8 @@
+<?php
+$isAdmin = auth()->user()->role == 'admin';
+$isTeacher = auth()->user()->role == 'teacher';
+?>
+
 <x-layout>
     <div class="courses">
         <x-form-box class="courses-form-box">
@@ -28,7 +33,7 @@
 
             <div class="button-container">
                 @auth
-                @if (auth()->user()->role == 'teacher' || auth()->user()->role == 'admin')
+                @if ($isAdmin || $isTeacher)
                 <a href="/course/create">
                     <button class="button" type="submit">Create new course</button>
                 </a>

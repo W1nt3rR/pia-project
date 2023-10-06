@@ -63,6 +63,13 @@ class QuizController extends Controller
         return redirect('/quiz/' . $quiz->id);
     }
 
+    public function removeQuestion(Quiz $quiz, $questionID)
+    {
+        $quiz->removeQuestion($questionID);
+
+        return redirect('/quiz/' . $quiz->id);
+    }
+
     public function start(Quiz $quiz)
     {
         return view('quiz.start', [

@@ -6,6 +6,8 @@ $files = Storage::files('public/documents/' . $course->id);
 $filenames = array_map('basename', $files);
 
 $enrolled = $course->enrolledUsers->contains(auth()->user());
+$isCourseOwner = $course->user == auth()->user();
+$isAdmin = auth()->user()->role == 'admin';
 ?>
 
 <x-layout>
@@ -85,7 +87,7 @@ $enrolled = $course->enrolledUsers->contains(auth()->user());
             @endif
 
             @auth
-            @if (auth()->user()->role == 'teacher' || auth()->user()->role == 'admin')
+            @if ($isCourseOwner || $isAdmin)
             <form method="POST" action="/course/pdf" enctype="multipart/form-data">
                 <input type="hidden" name="course_id" value="{{ $course->id }}">
                 @csrf

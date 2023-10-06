@@ -25,9 +25,9 @@ class Quiz extends Model
         return $this->questions()->create($question);
     }
 
-    public function removeQuestion($question)
+    public function removeQuestion($questionID)
     {
-        return $this->questions()->where('id', $question->id)->delete();
+        return $this->questions()->where('id', $questionID)->delete();
     }
 
     public function getQuestionCountByDifficulty($difficulty)
