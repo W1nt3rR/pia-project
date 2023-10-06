@@ -20,4 +20,9 @@
 <div class="user-avatar">
     {{ auth()->user()['first-name'] }} {{ auth()->user()['last-name'] }}
 </div>
+@if (auth()->user()?->attempts > 0)
+<div>
+    Precision: {{ number_format((auth()->user()->completions / auth()->user()->attempts) * 100, 2) }}%
+</div>
+@endif
 @endauth

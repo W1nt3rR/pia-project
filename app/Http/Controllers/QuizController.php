@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Quiz;
 use App\Models\Course;
+use App\Models\QuizQuestion;
 use Illuminate\Http\Request;
 
 class QuizController extends Controller
@@ -61,6 +62,48 @@ class QuizController extends Controller
         ]);
 
         return redirect('/quiz/' . $quiz->id);
+    }
+
+    public function checkAnswers(Request $request)
+    {
+        $selectedAnswers = $request->input('answers');
+        $results = [];
+        $questions = [];
+
+        if (!empty($selectedAnswers)) {
+
+            foreach ($selectedAnswers as $questionId => $selectedAnswer) {
+                $question = QuizQuestion::find($questionId);
+                $question->attempts++;
+                auth()->user()->attempts++;
+
+                if ($question->correct_answer === $selectedAnswer) {
+                    $results[$questionId] = true;
+                    $question->completions++;
+                    auth()->user()->completions++;
+                } else {
+                    $results[$questionId] = false;
+                }
+
+                $questions[] = $question;
+
+                auth()->user()->save();
+                $question->save();
+            }
+
+            $request->session()->put('selectedAnswers', array_keys($selectedAnswers));
+            session(['questions' => $questions, 'results' => $results]);
+        }
+
+        return redirect('/questions/result');
+    }
+
+    public function results()
+    {
+        $results = session('results');
+        $questions = session('questions');
+
+        return view('quiz.result', ['results' => $results, 'questions' => $questions]);
     }
 
     public function removeQuestion(Quiz $quiz, $questionID)
