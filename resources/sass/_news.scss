@@ -9,6 +9,18 @@
     justify-content: center;
     align-items: center;
 
+    position: relative;
+
+    .add-news-feed-button {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+    }
+
+    #add-news-feed-form {
+        margin-bottom: 20px;
+    }
+
     .news-list {
         width: 75%;
         display: grid;

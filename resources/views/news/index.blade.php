@@ -9,7 +9,7 @@ $isAdmin = auth()->user()?->role == 'admin';
 
         @auth
         @if ($isAdmin)
-        <div class="add-news-feed-form">
+        <div id="add-news-feed-form" style="display: none;">
             <form method="POST" action="/news">
                 @csrf
                 <label for="title">News Title:</label>
@@ -22,8 +22,11 @@ $isAdmin = auth()->user()?->role == 'admin';
                 @error('content')
                 <p style="color: red">{{$message}}</p>
                 @enderror
-                <button type="submit"><i class="fa-solid fa-circle-plus"></i> Add News</button>
+                <button class="button" type="submit">Add News</button>
             </form>
+        </div>
+        <div class="add-news-feed-button">
+            <button class="button" onclick="toggleAddNewsForm()">Add News</button>
         </div>
         @endif
         @endauth
@@ -40,3 +43,14 @@ $isAdmin = auth()->user()?->role == 'admin';
     </div>
 
 </x-layout>
+
+<script>
+    function toggleAddNewsForm() {
+        var x = document.getElementById("add-news-feed-form");
+        if (x.style.display === "none") {
+            x.style.display = "block";
+        } else {
+            x.style.display = "none";
+        }
+    }
+</script>
