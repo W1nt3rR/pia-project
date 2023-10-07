@@ -8,7 +8,7 @@ $isAdmin = auth()->user()?->role == 'admin';
     <div class="courses">
         <x-form-box class="courses-form-box">
 
-            @if($enrolled)
+            @if($enrolled || $$isCourseOwner || $isAdmin)
 
             <h1>Course: {{ $quiz->course->title }}: Quiz {{ $quiz->id }}</h1>
 
