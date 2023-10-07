@@ -113,10 +113,11 @@ class QuizController extends Controller
         return redirect('/quiz/' . $quiz->id);
     }
 
-    public function start(Quiz $quiz)
+    public function start(Quiz $quiz, String $difficulty)
     {
         return view('quiz.start', [
-            'quiz' => $quiz
+            'quiz' => $quiz,
+            'difficulty' => $difficulty
         ]);
     }
 }

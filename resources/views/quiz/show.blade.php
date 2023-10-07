@@ -139,7 +139,7 @@ $isAdmin = auth()->user()?->role == 'admin';
 
             <div class="button-container">
                 <label>Difficulty:</label>
-                <select name="difficulty">
+                <select name="difficulty" id="difficultySelect">
                     <option value="easy">Easy</option>
                     <option value="medium">Medium</option>
                     <option value="hard">Hard</option>
@@ -174,7 +174,8 @@ $isAdmin = auth()->user()?->role == 'admin';
     }
 
     function startQuiz() {
-        window.location.href = "/quiz/start/{{ $quiz->id }}";
+        const difficulty = document.getElementById("difficultySelect").value;
+        window.location.href = "/quiz/start/{{ $quiz->id }}/" + difficulty;
     }
 
     function removeQuiz() {
