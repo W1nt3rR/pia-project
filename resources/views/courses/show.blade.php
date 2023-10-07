@@ -89,9 +89,15 @@ $isAdmin = auth()->user()?->role == 'admin';
             @if ($enrolled || $isCourseOwner || $isAdmin)
             @auth
             <div class="items">
+                <?php
+                    $counter = 0;
+                ?>
                 @foreach ($course->quizzes as $quiz)
+                <?php
+                    $counter++;
+                ?>
                 <a href="/quiz/{{ $quiz->id }}" class="item">
-                    Quiz {{ $quiz->id }}
+                    Quiz {{ $counter }}
                 </a>
                 @endforeach
             </div>
