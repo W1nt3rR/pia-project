@@ -24,6 +24,8 @@ $isAdmin = auth()->user()?->role == 'admin';
                 @endif
                 @endauth
 
+                @auth
+                @if (!$isCourseOwner || !$isAdmin)
                 <div class="leave-enroll-button">
                     @if ($enrolled)
                     <a href="/course/leave/{{ $course->id }}">
@@ -35,6 +37,8 @@ $isAdmin = auth()->user()?->role == 'admin';
                     </a>
                     @endif
                 </div>
+                @endif
+                @endauth
                 <div class="tags">
                     @foreach (explode(", ", $course->tags) as $tag)
                     <div class="tag">
@@ -64,7 +68,7 @@ $isAdmin = auth()->user()?->role == 'admin';
                         </div>
                     </div>
                 </div>
-                @if ($enrolled)
+                @if ($enrolled || $isCourseOwner || $isAdmin)
                 @auth
                 <div class="course-info-group">
                     <div>
@@ -82,7 +86,7 @@ $isAdmin = auth()->user()?->role == 'admin';
                 @endif
             </div>
 
-            @if ($enrolled)
+            @if ($enrolled || $isCourseOwner || $isAdmin)
             @auth
             <div class="items">
                 @foreach ($course->quizzes as $quiz)
