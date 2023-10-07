@@ -16,7 +16,15 @@ $isAdmin = auth()->user()?->role == 'admin';
             <h1>Course: {{ $course->title }}</h1>
 
             <div class="course-info">
-                <div>
+                @auth
+                @if ($isCourseOwner || $isAdmin)
+                <a class="abutton remove-course-button" href="/course/delete/{{ $course->id }}">
+                    <button class="button">Delete course</button>
+                </a>
+                @endif
+                @endauth
+
+                <div class="leave-enroll-button">
                     @if ($enrolled)
                     <a href="/course/leave/{{ $course->id }}">
                         <button class="button" type="submit">Leave</button>

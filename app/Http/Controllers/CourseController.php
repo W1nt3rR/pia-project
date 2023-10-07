@@ -64,6 +64,13 @@ class CourseController extends Controller
         return CourseController::show($course);
     }
 
+    public function delete(Course $course)
+    {
+        $course->delete();
+
+        return redirect('/courses');
+    }
+
     public function uploadPDF(Request $request)
     {
         $request->validate([
