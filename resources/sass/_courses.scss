@@ -20,6 +20,19 @@
             display: flex;
             gap: 20px;
         }
+
+        .course-file {
+            a {
+                text-decoration: none;
+                color: gray;
+                &:hover {
+                    color: lightgray;
+                }
+                &:active {
+                    color: white;
+                }
+            }
+        }
     }
 
     .tags {

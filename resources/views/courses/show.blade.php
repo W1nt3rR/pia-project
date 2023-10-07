@@ -63,7 +63,7 @@ $isAdmin = auth()->user()?->role == 'admin';
                         <p>Course Materials</p>
                         <div>
                             @foreach ($filenames as $filename)
-                            <div>
+                            <div class="course-file">
                                 <a href="{{ url('/documents/' . $course->id . '/' . $filename) }}" target="_blank">{{ $filename }}</a>
                             </div>
                             @endforeach
@@ -92,7 +92,7 @@ $isAdmin = auth()->user()?->role == 'admin';
                 <input type="hidden" name="course_id" value="{{ $course->id }}">
                 @csrf
                 <div class="group-group">
-                    <label>Add PDF:</label>
+                    <label>Add File:</label>
                     <div class="form-group">
                         <input type="file" name="file">
                         @error('pdf')
