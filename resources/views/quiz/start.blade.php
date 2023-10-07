@@ -6,6 +6,7 @@
                 @if ($quiz->questions->count() > 0)
                 <div class="questions">
                     @foreach ($quiz->questions as $question)
+                    @if ($question->difficulty == $difficulty)
                     <div class="question">
                         <h1>{{ $question->question }}</h1>
                         <?php
@@ -26,6 +27,7 @@
                             @endforeach
                         </div>
                     </div>
+                    @endif
                     @endforeach
                 </div>
 
